@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let lang = ["javascript", "python"];
+const myContext = createContext();
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: lang[0],
+    };
+    this.change = this.change.bind(this);
+  }
+  change() {
+    this.setState((state) => ({
+      lang: state.lang === lang[0] ? lang[1] : lang[0],
+    }));
+  }
+
+  render() {
+    const contextValue = {
+      lang: this.state.lang,
+      change: this.change,
+    };
+    return (
+      <myContext.Provider value={contextValue}>
+        <Toggle />
+      </myContext.Provider>
+    );
+  }
+}
+
+class Toggle extends React.Component {
+  render() {
+    return (
+      <myContext.Consumer>
+        {({ lang, change }) => {
+          return (
+            <div className="app">
+              <div>{lang}</div>
+              <button onClick={change}>Toggle</button>
+            </div>
+          );
+        }}
+      </myContext.Consumer>
+    );
+  }
 }
 
 export default App;

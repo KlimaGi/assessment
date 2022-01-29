@@ -1,51 +1,26 @@
-import React, { createContext } from "react";
-import "./App.css";
+/** @jsxImportSource @emotion/react */
+import { Global, css } from "@emotion/react";
+import { GlobalStyle } from "./styles/base";
+import { Div } from "./styles/styledComponents/AppStyle";
+import React, { useState } from "react";
+import FormInput from "./FormInput";
+import PhoneBookList from "./PhoneBookList";
+import ToggleColor from "./ToggleColor";
+import { phoneBook } from "./FormInput";
 
-let lang = ["javascript", "python"];
-const myContext = createContext();
+const App = () => {
+  const [objBook, setObjBook] = useState(phoneBook);
+  const func = () => {
+    setObjBook(phoneBook);
+  };
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lang: lang[0],
-    };
-    this.change = this.change.bind(this);
-  }
-  change() {
-    this.setState((state) => ({
-      lang: state.lang === lang[0] ? lang[1] : lang[0],
-    }));
-  }
-
-  render() {
-    const contextValue = {
-      lang: this.state.lang,
-      change: this.change,
-    };
-    return (
-      <myContext.Provider value={contextValue}>
-        <Toggle />
-      </myContext.Provider>
-    );
-  }
-}
-
-class Toggle extends React.Component {
-  render() {
-    return (
-      <myContext.Consumer>
-        {({ lang, change }) => {
-          return (
-            <div className="app">
-              <div>{lang}</div>
-              <button onClick={change}>Toggle</button>
-            </div>
-          );
-        }}
-      </myContext.Consumer>
-    );
-  }
-}
+  return (
+    <Div>
+      <ToggleColor />
+      <FormInput func={func} />
+      <PhoneBookList data={objBook} />
+    </Div>
+  );
+};
 
 export default App;

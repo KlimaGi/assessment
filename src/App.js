@@ -16,6 +16,13 @@ const App = () => {
 
   return (
     <Div>
+      <Global
+        styles={css`
+          body {
+            ${GlobalStyle}
+          }
+        `}
+      ></Global>
       <ToggleColor />
       <FormInput func={func} />
       <PhoneBookList data={objBook} />

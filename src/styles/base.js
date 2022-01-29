@@ -1,5 +1,8 @@
 import { css } from "@emotion/react";
 
 export const GlobalStyle = css`
-  color: #6a8a8f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

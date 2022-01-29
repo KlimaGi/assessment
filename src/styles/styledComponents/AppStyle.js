@@ -3,7 +3,14 @@ import { css } from "@emotion/react";
 export const Div = styled.div`
   text-align: center;
   padding: 2rem;
+  margin: 0 auto;
   font-family: "Segoe UI", "Roboto", "Oxygen";
+  border: 1px solid grey;
+  color: #6a8a8f;
+  width: 80%;
+  display: flex;
+
+  flex-direction: column;
 `;
 
 export const SubmitBtn = styled.button`

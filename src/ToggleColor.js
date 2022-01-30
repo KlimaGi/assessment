@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { ToggleDiv } from "./styles/styledComponents/AppStyle";
 import { CircleLight, CircleBlue } from "./styles/styledComponents/AppStyle";
-import React, { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeProvider";
 
 const ToggleColor = () => {
-  const [isLight, setIsLight] = useState(true);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <>
-      <ToggleDiv onClick={() => setIsLight(!isLight)}>
-        {isLight && <CircleLight></CircleLight>}
-        {!isLight && <CircleBlue></CircleBlue>}
+      <ToggleDiv onClick={toggleTheme}>
+        {theme && <CircleLight></CircleLight>}
+        {!theme && <CircleBlue></CircleBlue>}
       </ToggleDiv>
     </>
   );

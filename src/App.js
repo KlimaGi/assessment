@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { Global, css } from "@emotion/react";
-import { GlobalStyle } from "./styles/base";
+import { GlobalStyle, DarkTheme, LightTheme } from "./styles/base";
 import { Div } from "./styles/styledComponents/AppStyle";
-import React, { useState } from "react";
+import { useState } from "react";
 import FormInput from "./FormInput";
 import PhoneBookList from "./PhoneBookList";
 import ToggleColor from "./ToggleColor";
@@ -15,7 +15,7 @@ const App = () => {
   };
 
   return (
-    <Div>
+    <>
       <Global
         styles={css`
           body {
@@ -23,10 +23,12 @@ const App = () => {
           }
         `}
       ></Global>
-      <ToggleColor />
-      <FormInput func={func} />
-      <PhoneBookList data={objBook} />
-    </Div>
+      <Div>
+        <ToggleColor />
+        <FormInput func={func} />
+        <PhoneBookList data={objBook} />
+      </Div>
+    </>
   );
 };
 

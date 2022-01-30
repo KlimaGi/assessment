@@ -1,11 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
-import { SubmitBtn } from "./styles/styledComponents/AppStyle";
+import { useState } from "react";
+import {
+  Form,
+  Input,
+  SubmitBtn,
+} from "./styles/styledComponents/FormInputStyle";
 
 export let phoneBook = [{ first: "coder", last: "byte", number: "3335559999" }];
 
 const FormInput = (props) => {
-  const [phoneEntry, setPhoneEntry] = useState();
+  const [phoneEntry, setPhoneEntry] = useState({
+    first: "",
+    last: "",
+    number: "",
+  });
 
   const handleChange = (e) => {
     setPhoneEntry({ ...phoneEntry, [e.target.name]: e.target.value });
@@ -20,30 +28,38 @@ const FormInput = (props) => {
     phoneBook = [...temp];
     props.func();
     console.log(phoneBook);
+    setPhoneEntry({
+      first: "",
+      last: "",
+      number: "",
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <Input
         name="first"
         type="text"
         placeholder="code"
         onChange={handleChange}
-      ></input>
-      <input
+        value={phoneEntry.first}
+      ></Input>
+      <Input
         name="last"
         type="text"
         placeholder="byte"
         onChange={handleChange}
-      ></input>
-      <input
+        value={phoneEntry.last}
+      ></Input>
+      <Input
         name="number"
         type="text"
         placeholder="3335559999"
         onChange={handleChange}
-      ></input>
+        value={phoneEntry.number}
+      ></Input>
       <SubmitBtn type="submit">Submit</SubmitBtn>
-    </form>
+    </Form>
   );
 };
 

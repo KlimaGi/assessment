@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { Global, css } from "@emotion/react";
-import { GlobalStyle, DarkTheme, LightTheme } from "./styles/base";
+import { GlobalStyle } from "./styles/theme/base";
 import { Div } from "./styles/styledComponents/AppStyle";
 import { useState } from "react";
 import FormInput from "./FormInput";

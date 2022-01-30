@@ -1,3 +1,9 @@
+import {
+  darktext,
+  lighttext,
+  backlight,
+  backdark,
+} from "./styles/theme/colors";
 import { createContext, useState } from "react";
 
 export const ThemeContext = createContext();
@@ -8,8 +14,8 @@ export const ThemeProvider = ({ children }) => {
     setTheme(theme === true ? false : true);
   };
 
-  const color = theme === true ? "#5c7377" : "#79999e";
-  const backgroundColor = theme === true ? "#edecee" : "#3b3f47";
+  const color = theme === true ? `${darktext}` : `${lighttext}`;
+  const backgroundColor = theme === true ? `${backlight}` : `${backdark}`;
 
   document.body.style.color = color;
   document.body.style.backgroundColor = backgroundColor;

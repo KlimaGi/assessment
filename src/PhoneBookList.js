@@ -1,12 +1,15 @@
+/** @jsxImportSource @emotion/react */
+import { Table, Tr } from "./styles/styledComponents/PhoneBookStyle";
+
 const PhoneBookList = (props) => {
   return (
-    <table>
+    <Table>
       <thead>
-        <tr>
+        <Tr>
           <th>first</th>
           <th>last</th>
           <th>number</th>
-        </tr>
+        </Tr>
       </thead>
       <tbody>
         {props.data
@@ -14,14 +17,14 @@ const PhoneBookList = (props) => {
             a.last.toUpperCase() > b.last.toUpperCase() ? 1 : -1
           )
           .map((item, i) => (
-            <tr key={i}>
+            <Tr key={i}>
               <td>{item.first}</td>
               <td>{item.last}</td>
               <td>{item.number}</td>
-            </tr>
+            </Tr>
           ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
 export default PhoneBookList;

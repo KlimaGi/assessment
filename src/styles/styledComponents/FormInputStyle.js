@@ -33,7 +33,7 @@ export const SubmitBtn = styled.button`
   background-color: ${grey};
   cursor: pointer;
   :hover {
-    background-color: ${lightgrey};
+    background-color: ${lightblue};
     color: ${darktext};
   }
 `;

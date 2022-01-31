@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { Table, Tr } from "./styles/styledComponents/PhoneBookStyle";
+import { Table, Tr, Th, Td } from "./styles/styledComponents/PhoneBookStyle";
 
 const PhoneBookList = (props) => {
   return (
     <Table>
       <thead>
         <Tr>
-          <th>first</th>
-          <th>last</th>
-          <th>number</th>
+          <Th>first</Th>
+          <Th>last</Th>
+          <Th>number</Th>
         </Tr>
       </thead>
       <tbody>
@@ -18,9 +18,9 @@ const PhoneBookList = (props) => {
           )
           .map((item, i) => (
             <Tr key={i}>
-              <td>{item.first}</td>
-              <td>{item.last}</td>
-              <td>{item.number}</td>
+              <Td>{item.first}</Td>
+              <Td>{item.last}</Td>
+              <Td>{item.number}</Td>
             </Tr>
           ))}
       </tbody>

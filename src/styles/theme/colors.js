@@ -1,7 +1,7 @@
 // toggle color
-export const grey = "#808080";
+export const grey = "#5c7377";
 export const lightgrey = "#dcdcdc";
-export const lightblue = "#a1b2b4";
+export const lightblue = "#8aadb1d7";
 
 // theme provider
 export const darktext = "#5c7377";

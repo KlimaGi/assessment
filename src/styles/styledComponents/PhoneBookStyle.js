@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { lightblue } from "../theme/colors";
 
 export const Table = styled.table`
@@ -8,11 +9,22 @@ export const Table = styled.table`
   width: 25rem;
 `;
 
-export const Tr = styled.tr`
-  padding: 1rem;
-  height: 2rem;
+export const TableBase = css`
+  padding: 0.5rem;
   text-align: center;
+  cursor: default;
   :hover {
     border-bottom: 1px solid ${lightblue};
   }
+`;
+
+export const Tr = styled.tr`
+  ${TableBase}
+`;
+export const Th = styled.th`
+  ${TableBase};
+  border-bottom: 1px solid ${lightblue};
+`;
+export const Td = styled.td`
+  ${TableBase}
 `;

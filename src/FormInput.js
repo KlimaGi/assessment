@@ -68,7 +68,7 @@ const FormInput = (props) => {
         value={phoneEntry.number}
       ></Input>
       <SubmitBtn type="submit">Submit</SubmitBtn>
-      {errorMsg && <ErrorMsg>All field is required</ErrorMsg>}
+      {errorMsg && <ErrorMsg>All fields are required</ErrorMsg>}
     </Form>
   );
 };

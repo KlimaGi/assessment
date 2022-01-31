@@ -4,6 +4,7 @@ import {
   Form,
   Input,
   SubmitBtn,
+  ErrorMsg,
 } from "./styles/styledComponents/FormInputStyle";
 
 export let phoneBook = [{ first: "coder", last: "byte", number: "3335559999" }];
@@ -14,6 +15,7 @@ const FormInput = (props) => {
     last: "",
     number: "",
   });
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const handleChange = (e) => {
     setPhoneEntry({ ...phoneEntry, [e.target.name]: e.target.value });
@@ -23,16 +25,23 @@ const FormInput = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      phoneEntry.first.length ||
+      phoneEntry.last.length ||
+      phoneEntry.number.length
+    ) {
+      return setErrorMsg(true);
+    }
     temp.push(phoneEntry);
-
     phoneBook = [...temp];
     props.func();
-    console.log(phoneBook);
+
     setPhoneEntry({
       first: "",
       last: "",
       number: "",
     });
+    setErrorMsg(false);
   };
 
   return (
@@ -59,6 +68,7 @@ const FormInput = (props) => {
         value={phoneEntry.number}
       ></Input>
       <SubmitBtn type="submit">Submit</SubmitBtn>
+      {errorMsg && <ErrorMsg>All field is required</ErrorMsg>}
     </Form>
   );
 };

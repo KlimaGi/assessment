@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import { lightblue, grey, lightgrey, darktext } from "../theme/colors";
 export const Form = styled.form`
   margin: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const Input = styled.input`
@@ -13,7 +15,6 @@ export const Input = styled.input`
   font-size: 1rem;
   color: ${darktext};
   background: ${lightgrey};
-
   :focus {
     outline: none;
     color: ${darktext};
@@ -36,4 +37,13 @@ export const SubmitBtn = styled.button`
     background-color: ${lightblue};
     color: ${darktext};
   }
+`;
+
+export const ErrorMsg = styled.div`
+  color: #cf7272;
+  position: absolute;
+  padding: 0.1rem 1rem;
+  position: absolute;
+  bottom: 0;
+  index-z: 1;
 `;

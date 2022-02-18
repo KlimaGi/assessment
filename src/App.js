@@ -3,10 +3,10 @@ import { Global, css } from "@emotion/react";
 import { GlobalStyle } from "./styles/theme/base";
 import { Div } from "./styles/styledComponents/AppStyle";
 import { useState } from "react";
-import FormInput from "./FormInput";
+import FormInput from "./components/FormInput";
 import PhoneBookList from "./PhoneBookList";
-import ToggleColor from "./ToggleColor";
-import { phoneBook } from "./FormInput";
+import ToggleColor from "./components/ToggleColor";
+import { phoneBook } from "./components/FormInput";
 
 const App = () => {
   const [objBook, setObjBook] = useState(phoneBook);

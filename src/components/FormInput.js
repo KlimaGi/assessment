@@ -5,7 +5,7 @@ import {
   Input,
   SubmitBtn,
   ErrorMsg,
-} from "./styles/styledComponents/FormInputStyle";
+} from "../styles/styledComponents/FormInputStyle";
 
 export let phoneBook = [{ first: "coder", last: "byte", number: "3335559999" }];
 

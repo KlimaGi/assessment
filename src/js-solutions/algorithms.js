@@ -1,4 +1,21 @@
 //---------------Canal Management
+function queu(arr, L) {
+  let totalTime = 0;
+  let num1 = arr;
+  let tempLength = L;
+
+  while (num1[0] <= tempLength) {
+    let go = num1.shift();
+    go *= 2;
+    totalTime += go;
+    tempLength -= go / 2;
+  }
+  totalTime += 2;
+
+  console.log("totalTime " + totalTime);
+  console.log("tempLength " + tempLength);
+  return [num1, totalTime];
+}
 function canalMania(lowQueue, highQueue, lockLength) {
   let totalTime = 0;
   let low = lowQueue;
@@ -123,12 +140,31 @@ function pointInCircle(x, y) {
   // return n < 1;
 }
 
-const pointInCircle = (x, y) => Math.hypot(x, y) < 1;
+const pointInCircle2 = (x, y) => Math.hypot(x, y) < 1;
 
 console.log(pointInCircle(0, 0));
 console.log(pointInCircle(2, 0));
 console.log(pointInCircle(0, 0.9));
 console.log(pointInCircle(0.5, 0.5));
-console.log(pointInCircle(1, 0));
+console.log(pointInCircle2(1, 0));
 
 //---------------------
+
+//---------------Collision Detection ---
+function collision(x1, y1, radius1, x2, y2, radius2) {
+  const distance = Math.hypot(x1 - x2, y1 - y2);
+  return distance - radius1 - radius2 >= 0 ? false : true;
+}
+
+function collision2(x1, y1, radius1, x2, y2, radius2) {
+  const distance = Math.hypot(x1 - x2, y1 - y2);
+  return distance <= radius1 + radius2;
+}
+
+console.log(collision(1, 1, 1, 1.1, 1.1, 0.1)); // true
+console.log(collision(-1, 1, 10, -10.1, 1.1, 1)); // true
+console.log(collision(-5, 5, 5.0001, 5, -5, 5 * Math.sqrt(5))); // true
+
+console.log(collision(1, 1, 0.01, 1, 1.1, 0.01)); // false
+console.log(collision(-1, 1, 6, -10.1, 1.1, 1)); // false
+console.log(collision2(-5, 5, 5.0001, 5, -5, 4 * Math.sqrt(5))); // false

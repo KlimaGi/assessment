@@ -92,7 +92,6 @@ function stockList2(listOfArt, listOfCat) {
 const book = ["CBART 0", "CDXEF 0", "BKWRK 20", "BTSQZ 10", "DRTYM 0"];
 const co = ["Z", "W", "B"];
 console.log(stockList2(book, co));
-//-------------------------------
 //----------------------------Shortest Word ---
 
 const findShort = (s) => {
@@ -148,8 +147,6 @@ console.log(pointInCircle(0, 0.9));
 console.log(pointInCircle(0.5, 0.5));
 console.log(pointInCircle2(1, 0));
 
-//---------------------
-
 //---------------Collision Detection ---
 function collision(x1, y1, radius1, x2, y2, radius2) {
   const distance = Math.hypot(x1 - x2, y1 - y2);
@@ -168,3 +165,94 @@ console.log(collision(-5, 5, 5.0001, 5, -5, 5 * Math.sqrt(5))); // true
 console.log(collision(1, 1, 0.01, 1, 1.1, 0.01)); // false
 console.log(collision(-1, 1, 6, -10.1, 1.1, 1)); // false
 console.log(collision2(-5, 5, 5.0001, 5, -5, 4 * Math.sqrt(5))); // false
+
+//--------------------------------Find the unique number
+function findUniq(arr) {
+  const unique = arr.sort((a, b) => a - b);
+  const one = unique[0] !== unique[1] ? unique[0] : unique[unique.length - 1];
+  return one;
+}
+console.log(findUniq([3, 3, 3, 3, 1, 3, 3]));
+//------------------------------- CubeSummation
+function cubeSum(n, m) {
+  if (n === m) return 0;
+  const sorted = n > m ? [n, m] : [m, n];
+  let nums = 0;
+  for (let one = sorted[0]; one > sorted[1]; one--) {
+    nums += Math.pow(one, 3);
+  }
+  return nums;
+}
+
+console.log(cubeSum(5, 0)); // 225
+console.log(cubeSum(2, 3)); // 27
+//--------------------------------------------
+
+function FirstFactorial(num) {
+  let total = 1;
+  for (let i = 1; i <= num; i++) {
+    total *= i;
+  }
+  return total;
+}
+
+// keep this function call here
+console.log(FirstFactorial(8)); // 40320
+
+//----------------------------
+function LetterCapitalize(str) {
+  return str
+    .split(" ")
+    .map((a) => a[0].toUpperCase() + a.slice(1))
+    .join(" ");
+}
+
+// keep this function call here
+console.log(LetterCapitalize("i ran there")); // I Ran There
+///------------------------------------------
+function Palindrome(str) {
+  const byOne = str.split("");
+  const letter = byOne.filter((a) => a.match(/[a-z]/i));
+  const one = letter.join("");
+  const rev = letter.reverse().join("");
+  return one === rev;
+}
+
+// keep this function call here
+console.log(Palindrome("never, odd or? even")); // true
+console.log(Palindrome("eye")); // true
+//___________________________________________
+function CheckNums(num1, num2) {
+  return num2 > num1 ? "true" : num2 === num1 ? "-1" : "false";
+}
+
+// keep this function call here
+console.log(CheckNums(5, 2));
+//___________________________________________
+function SimpleEvens(num) {
+  const numArr = num
+    .toString()
+    .split("")
+    .map((a) => Number(a));
+  const evenArr = numArr.filter((a) => a % 2 === 0);
+
+  return numArr.length === evenArr.length ? "true" : "false";
+}
+
+console.log(SimpleEvens());
+//___________________________________________
+function DashInsert(str) {
+  const numArr = str.split("").map((a) => Number(a));
+  let numOut = [];
+  for (let i = 0; i <= numArr.length - 1; i++) {
+    if (numArr[i] % 2 !== 0 && numArr[i + 1] % 2 !== 0) {
+      numOut.push(numArr[i]);
+      if (i !== str.length - 1) numOut.push("-");
+    } else {
+      numOut.push(numArr[i]);
+    }
+  }
+  return numOut.join("");
+}
+
+console.log(DashInsert(99946)); // 9-9-946

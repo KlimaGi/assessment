@@ -256,3 +256,106 @@ function DashInsert(str) {
 }
 
 console.log(DashInsert(99946)); // 9-9-946
+
+function OneDecremented(str) {
+  let total = 0;
+  const arr = str.split("").map((a) => Number(a));
+  for (let i = 0; i <= arr.length; i++) {
+    if (arr[i] - arr[i + 1] === 1) {
+      total++;
+    }
+  }
+  return total;
+}
+
+console.log(OneDecremented("9876541110")); // 6
+//_____________________________________________________;
+function Superincreasing(arr) {
+  let total = 0;
+  for (let i = 0; i <= arr.length - 1; i++) {
+    if (arr[i] <= total) return "false";
+    total += arr[i];
+  }
+  return "true";
+}
+
+console.log(Superincreasing([1, 3, 6, 13, 54])); // true
+//_____________________________________________________;
+function ChangingSequence(arr) {
+  let i = 0;
+
+  if (arr[i] < arr[i + 1]) {
+    while (arr[i] < arr[i + 1]) {
+      i++;
+    }
+    return i === arr.length - 1 ? -1 : i;
+  }
+
+  if (arr[i] > arr[i + 1]) {
+    while (arr[i] > arr[i + 1]) {
+      i++;
+    }
+    return i === arr.length - 1 ? -1 : i;
+  }
+}
+
+console.log(ChangingSequence());
+//___________________________________________
+function BitwiseOne(strArr) {
+  let i = 0;
+  let arr = [];
+  while (i <= strArr[0].length - 1) {
+    if (strArr[0][i] === strArr[1][i]) {
+      arr.push(Number(strArr[0][i]));
+    } else {
+      arr.push(1);
+    }
+    i++;
+  }
+
+  return arr.join("");
+}
+
+console.log(BitwiseOne(["100", "000"])); // 100
+console.log(BitwiseOne(["00011", "01010"])); // 01011
+//___________________________________________
+function VowelCount(str) {
+  // do not count y as vowel in this case
+  const vowel = str.match(/[aeiou]/gi);
+
+  return vowel ? vowel.length : 0;
+}
+
+console.log(VowelCount("coderbyte")); // 3
+//___________________________________________
+function SwapCase(str) {
+  const arr = str.split("");
+  const change = arr
+    .map((a) =>
+      a.charCodeAt(0) >= 65 && a.charCodeAt(0) <= 90
+        ? a.toLowerCase()
+        : a.charCodeAt(0) >= 97 && a.charCodeAt(0) <= 122
+        ? a.toUpperCase()
+        : a
+    )
+    .join("");
+
+  return change;
+}
+
+console.log(SwapCase("Hello-LOL?!")); //"hELLO-lol?!"
+//___________________________________________
+function FindIntersection(strArr) {
+  const arr0 = strArr[0].split(",").map((a) => a.trim());
+  const arr1 = strArr[1].split(",").map((a) => a.trim());
+  let arr = [];
+  for (let i = 0; i <= arr0.length - 1; i++) {
+    if (arr1.includes(arr0[i])) arr.push(arr0[i]);
+  }
+  return arr.length ? arr.join() : "false";
+}
+
+console.log(FindIntersection(["2, 3, 4", "3"])); // 3
+console.log(FindIntersection(["1, 5, 6, 7, 10, 11, 12", "5, 6, 8, 11, 17"])); // 5,6,11
+console.log(FindIntersection(["1, 2, 3, 4, 5", "6, 7, 8, 9, 10"])); // false
+console.log(FindIntersection(["1, 2, 4, 5, 6, 9", "2, 3, 4, 8, 10"])); // 2,4

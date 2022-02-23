@@ -359,3 +359,111 @@ console.log(FindIntersection(["2, 3, 4", "3"])); // 3
 console.log(FindIntersection(["1, 5, 6, 7, 10, 11, 12", "5, 6, 8, 11, 17"])); // 5,6,11
 console.log(FindIntersection(["1, 2, 3, 4, 5", "6, 7, 8, 9, 10"])); // false
 console.log(FindIntersection(["1, 2, 4, 5, 6, 9", "2, 3, 4, 8, 10"])); // 2,4
+//____________________________________________________
+function RemoveBrackets(str) {
+  const arr = str.split("");
+  const first = arr.filter((a) => a === "(").length;
+  const sec = arr.filter((a) => a === ")").length;
+  const num = first - sec > 0 ? first - sec : sec - first;
+  if (arr.indexOf(")") < arr.indexOf("(") && num % 2 === 0) return num + 2;
+  return num;
+}
+
+console.log(RemoveBrackets("()()("));
+//___________________________________________
+function DistinctCharacters(str) {
+  let temp = [];
+  const arr = str.split("");
+  for (let i = 0; i <= arr.length - 1; i++) {
+    if (!temp.includes(arr[i])) {
+      temp.push(arr[i]);
+    }
+  }
+
+  return temp.length >= 10 ? "true" : "false";
+}
+
+console.log(DistinctCharacters("racecar")); // fasle // unique simbols less than 10
+//___________________________________________
+function TimeConvert(num) {
+  const min = num % 60;
+  const h = (num - min) / 60;
+
+  return `${h}:${min}`;
+}
+
+console.log(TimeConvert(126)); // 2:6
+console.log(TimeConvert(45)); // 0:45
+//___________________________________________
+function GroupTotals(strArr) {
+  let letters = strArr.map((a) => a[0]);
+  let uniq = [];
+  for (let i = 0; i <= letters.length - 1; i++) {
+    if (!uniq.includes(letters[i])) uniq.push(letters[i]);
+  }
+
+  const getSum = (n) => {
+    const aList = strArr.filter((a) => a[0] === n);
+    const sep = aList.map((a) => Number(a.split(":")[1]));
+    const sum = sep.reduce((a, b) => a + b, 0);
+    return sum;
+  };
+
+  const counted = uniq.map((a) => `${a}:${getSum(a)}`);
+  return counted
+    .filter((a) => !a.includes(":0"))
+    .sort()
+    .join(); // remove sum of 0
+}
+
+console.log(GroupTotals(["B:-1", "A:1", "B:3", "A:5"])); // A:6,B:2
+//___________________________________________
+function CountingMinutesI(str) {
+  const times = str.split("-");
+  const firstH = Number(times[0].split(":")[0]);
+  const firstM = Number(times[0].split(":")[1].slice(0, 2));
+
+  const secH = Number(times[1].split(":")[0]);
+  const secM = Number(times[1].split(":")[1].slice(0, 2));
+
+  let first = 0;
+  if (firstH === 12) first = firstM;
+  else first = firstH * 60 + firstM;
+
+  let second = 0;
+  if (secH === 12) second = secM;
+  else second = secH * 60 + secM;
+
+  let min = 0;
+  if (
+    (times[0].includes("am") && times[1].includes("am")) ||
+    (times[0].includes("pm") && times[1].includes("pm"))
+  ) {
+    if (first < second) min = second - first;
+    // 1440 = 24h * 60
+    else if (first > second) min = 1440 + second - first;
+  } else if (times[0].includes("pm") && times[1].includes("am")) {
+    // 720 = 12h * 60
+    min = 720 + second - first;
+  } else if (times[0].includes("am") && times[1].includes("pm")) {
+    min = 720 - first + second;
+  }
+
+  return min;
+}
+
+console.log(CountingMinutesI("11:00am-2:10pm")); // 190
+console.log(CountingMinutesI("12:30pm-12:00am")); // 690
+console.log(CountingMinutesI("1:23am-1:08am")); // 1425
+//___________________________________________
+function LongestWord(sen) {
+  const word = sen
+    .split("")
+    .filter((a) => /[a-z]/i.test(a) || /[0-9]/.test(a) || /\s/.test(a))
+    .join("");
+  const wordArr = word.split(" ");
+  return wordArr.sort((a, b) => b.length - a.length)[0];
+}
+
+console.log(LongestWord("123456789 98765432")); // 123456789
+console.log(LongestWord("fun&!! time")); // time

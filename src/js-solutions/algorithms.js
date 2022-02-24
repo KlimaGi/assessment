@@ -467,3 +467,73 @@ function LongestWord(sen) {
 
 console.log(LongestWord("123456789 98765432")); // 123456789
 console.log(LongestWord("fun&!! time")); // time
+//
+function NonrepeatingCharacter(str) {
+  // show first one, when there allways will be at least one not repeading char
+
+  const arr = str.split(" ").join("").split("");
+  const one = arr.filter((a) => arr.indexOf(a) === arr.lastIndexOf(a));
+  return one[0];
+}
+
+console.log(NonrepeatingCharacter("agettkgaeee")); // k
+//___________________________________________;
+function OverlappingRanges(arr) {
+  let first = [];
+  for (let i = arr[0]; i <= arr[1]; i++) {
+    first.push(i);
+  }
+  let second = [];
+  for (let i = arr[2]; i <= arr[3]; i++) {
+    second.push(i);
+  }
+  let overlapping = first.filter((a) => second.includes(a));
+  return overlapping.length >= arr[4] ? "true" : "false";
+}
+
+console.log(OverlappingRanges([4, 10, 2, 6, 3])); // true overlapping at least 3 numbers
+console.log(OverlappingRanges([1, 8, 2, 4, 4])); // false
+//___________________________________________;
+function NumberAddition(str) {
+  const num = str.match(/(\d+)/g);
+  if (num === null) return 0;
+  const sum = num.reduce((a, b) => Number(a) + Number(b));
+  return sum;
+}
+
+console.log(NumberAddition("75Number9")); // 84
+console.log(NumberAddition("10 2One Number*1*")); // 13
+console.log(NumberAddition("no numbers sorry**")); // 0
+
+//___________________________________________;
+function LetterCountI(str) {
+  let arr = str.split(" ");
+
+  let wordCount = (word) => {
+    let many = word.split("");
+    let same = many.filter((a) => many.indexOf(a) !== many.lastIndexOf(a));
+    // repeaded letters
+    let temp = [];
+    same.filter((a) => {
+      if (!temp.includes(a)) temp.push(a);
+    });
+    let count = 0;
+    for (let i = 0; i <= temp.length; i++) {
+      let see = same.filter((a) => a === temp[i]).length;
+      if (see > count) count = see;
+    }
+    return [word, count];
+  };
+
+  let el = [];
+  arr.forEach((a) => el.push(wordCount(a)));
+  let higher = el[0];
+  el.forEach((a) => {
+    if (a[1] > higher[1]) higher = a;
+  });
+  return higher[1] ? higher[0] : -1;
+}
+
+console.log(LetterCountI("hello world")); // hello
+console.log(LetterCountI("No words")); // -1
+//___________________________________________

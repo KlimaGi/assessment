@@ -537,3 +537,69 @@ function LetterCountI(str) {
 console.log(LetterCountI("hello world")); // hello
 console.log(LetterCountI("No words")); // -1
 //___________________________________________
+function StarRating(str) {
+  let num = Number(str);
+  let full = Math.floor(num / 0.5) * 0.5; // round to nearest half
+  let rem = num - full;
+  let half = full - Math.trunc(full);
+  let text = [];
+
+  if (full > 0) {
+    let count = 1;
+    while (count <= full) {
+      text.push("full");
+      count++;
+    }
+  }
+  if (half === 0.5 && rem < 0.25) text.push("half");
+  else if (half === 0.5 && rem >= 0.25) text.push("full");
+  else if (rem > 0.25) text.push("half");
+
+  if (text.length < 5) {
+    let count = 5 - text.length;
+    let emptyCount = 1;
+    while (emptyCount <= count) {
+      text.push("empty");
+      emptyCount++;
+    }
+  }
+  return text.join(" ");
+}
+
+console.log(StarRating("3.02")); // full full full empty empty
+console.log(StarRating("2.75")); // full full full empty empty
+console.log(StarRating("0.38")); // half empty empty empty empty
+//___________________________________________
+function likes(names) {
+  let s = names.length > 1 ? "" : "s";
+  let text = `like${s} this`;
+  if (names.length === 0) return `no one ${text}`;
+  else if (names.length === 1) return `${names} ${text}`;
+  else if (names.length === 2) return `${names[0]} and ${names[1]} ${text}`;
+  else if (names.length === 3)
+    return `${names[0]}, ${names[1]} and ${names[2]} ${text}`;
+  else if (names.length >= 4)
+    return `${names[0]}, ${names[1]} and ${names.length - 2} others ${text}`;
+}
+
+console.log(likes([])); // 'no one likes this')
+console.log(likes(["Peter"])); // 'Peter likes this')
+console.log(likes(["Jacob", "Alex"])); // 'Jacob and Alex like this')
+console.log(likes(["Max", "John", "Mark"])); // 'Max, John and Mark like this')
+console.log(likes(["Alex", "Jacob", "Mark", "Max"])); // 'Alex, Jacob and 2 others like this')
+//___________________________________________
+function highAndLow(numbers) {
+  let sep = numbers.split(" ");
+  let nums = sep.map((a) => Number(a));
+  let sorted = nums.sort((a, b) => b - a);
+  return `${sorted[0]} ${sorted[sorted.length - 1]}`;
+}
+
+console.log(highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4")); //"42 -9"
+//___________________________________________
+function highAndLow2(numbers) {
+  let nums = numbers.split(" ").map(Number);
+  let sorted = nums.sort((a, b) => b - a);
+  return `${sorted[0]} ${sorted[sorted.length - 1]}`;
+}
+//___________________________________________

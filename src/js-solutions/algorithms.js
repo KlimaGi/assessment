@@ -603,3 +603,33 @@ function highAndLow2(numbers) {
   return `${sorted[0]} ${sorted[sorted.length - 1]}`;
 }
 //___________________________________________
+function humanReadable(seconds) {
+  const f = (num) => (num <= 9 ? `0${num}` : `${num}`);
+
+  const hh = Math.trunc(seconds / 3600);
+  const mm = Math.trunc((seconds % 3600) / 60);
+  const ss = (seconds % 3600) % 60;
+
+  return [f(hh), f(mm), f(ss)].join(":");
+}
+console.log(humanReadable(0)); // '00:00:00'
+console.log(humanReadable(3600)); // '01:00:00'
+console.log(humanReadable(86399)); // '23:59:59'
+console.log(humanReadable(90)); // '00:01:30'
+//___________________________________________;
+function removeChar(str) {
+  return str.slice(1, str.length - 1);
+}
+
+console.log(removeChar("eloquent")); // 'loquen'
+console.log(removeChar("place")); // 'lac'
+//___________________________________________;
+function createPhoneNumber(numbers) {
+  let one = numbers.slice(0, 3).join("");
+  let two = numbers.slice(3, 6).join("");
+  let three = numbers.slice(6).join("");
+  return `(${one}) ${two}-${three}`;
+}
+console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])); //"(123) 456-7890"
+console.log(createPhoneNumber([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])); //"(111) 111-1111"
+//___________________________________________;

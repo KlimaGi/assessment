@@ -633,3 +633,90 @@ function createPhoneNumber(numbers) {
 console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])); //"(123) 456-7890"
 console.log(createPhoneNumber([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])); //"(111) 111-1111"
 //___________________________________________;
+function HTMLElements(str) {
+  let text = str
+    .match(/<\/?[a-z][^>]*>/gi)
+    .map((a) => a.replace(/</, ""))
+    .map((a) => a.replace(/>/, ""));
+  let temp = [...text];
+
+  while (temp.length > 2) {
+    let one = temp[0];
+    let found = temp.find((el) => el === `/${one}`);
+    //console.log([found, temp.indexOf(found)]);
+    if (!found) return one;
+
+    temp.splice(temp.indexOf(one), 1);
+    temp.splice(temp.indexOf(found), 1);
+  }
+  if (temp.length === 1) return temp[0];
+  if (temp[0] === temp[1].replace(/\//, "")) return "true";
+  return temp[0];
+}
+
+console.log(HTMLElements("<div><b><p>hello world</p></b></div>")); // true
+console.log(HTMLElements("<div><b><p>p</p></b></div>")); // true
+console.log(HTMLElements("<p>hello</p><div></div>")); // true
+console.log(HTMLElements("<div>")); // div
+console.log(HTMLElements("<p><p><em></em><p></p><i></p>")); // i ? result temp['p', 'i']
+//___________________________________________;
+function assembleString(array) {
+  let result = array[0];
+  let i = 1;
+
+  while (i <= array.length - 1) {
+    let snow = result.indexOf("*");
+    if (array[i][snow] !== "*") {
+      result = result.replace("*", array[i][snow]);
+    }
+    i++;
+  }
+
+  if (result[0] === "*") {
+    for (let n = 0; n <= result.length - 1; n++) {
+      result = result.replace(result[n], "#");
+    }
+  }
+
+  return result;
+}
+console.log(assembleString(["a*cde", "*bcde", "abc*e"])); // "abcde"
+console.log(assembleString(["a*c**", "**cd*", "a*cd*"])); // "a#cd#"
+console.log(
+  assembleString(["H*llo, W*rld!", "Hel*o, *or*d!", "*ello* World*"])
+); //'Hello, World!'
+console.log(assembleString(["*****"])); // "#####"
+//___________________________________________;
+function matrix(array) {
+  let arr = [...array];
+  for (let i = 0; i <= arr[0].length - 1; i++) {
+    if (arr[i][i] < 0) arr[i][i] = 0;
+    else if (arr[i][i] >= 0) arr[i][i] = 1;
+  }
+  return arr;
+}
+console.log(
+  matrix([
+    [-1, 4, -5, -9, 3],
+    [6, -4, -7, 4, -5],
+    [3, 5, 0, -9, -1],
+    [1, 5, -7, -8, -9],
+    [-3, 2, 1, -5, 6],
+  ])
+);
+// [
+//  [ 0,  4, -5, -9,  3 ],
+// [ 6,  0, -7,  4, -5 ],
+//  [ 3,  5,  1, -9, -1 ],
+//  [ 1,  5, -7,  0, -9 ],
+// [-3,  2,  1, -5,  1 ]
+//]
+//___________________________________________;
+function matrix2(array) {
+  let arr = [...array];
+  for (let i = 0; i <= arr[0].length - 1; i++) {
+    arr[i][i] = arr[i][i] < 0 ? 0 : 1;
+  }
+  return arr;
+}
+//________________________________________

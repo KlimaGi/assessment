@@ -720,3 +720,74 @@ function matrix2(array) {
   return arr;
 }
 //________________________________________
+function getCountedNucleotides(genCode) {
+  let gen = genCode.toUpperCase().split("");
+  let A = gen.filter((a) => a === "A");
+  let C = gen.filter((a) => a === "C");
+  let G = gen.filter((a) => a === "G");
+  let T = gen.filter((a) => a === "T");
+  let result = { A: A.length, C: C.length, G: G.length, T: T.length };
+  return result;
+}
+console.log(getCountedNucleotides("aCCggT")); // {A: 1, C: 2, G: 2, T: 1}
+//___________________________________________;
+function rot13(message) {
+  let msg = message.split("");
+
+  let change = (a) => {
+    if (
+      (a.charCodeAt(0) >= 65 && a.charCodeAt(0) <= 77) ||
+      (a.charCodeAt(0) >= 97 && a.charCodeAt(0) <= 109)
+    )
+      return String.fromCharCode(a.charCodeAt(0) + 13);
+    else if (
+      (a.charCodeAt(0) >= 78 && a.charCodeAt(0) <= 90) ||
+      (a.charCodeAt(0) >= 110 && a.charCodeAt(0) <= 122)
+    )
+      return String.fromCharCode(a.charCodeAt(0) - 13);
+    else return a;
+  };
+
+  let result = msg.map((n) => change(n)).join("");
+  return result;
+}
+//console.log(rot13('gemm')); // 'trzz'
+//console.log(rot13('test')); // 'grfg'
+//console.log(rot13('Test')); // 'Grfg'
+console.log(rot13("Ruby is cool!")); // 'Ehol vf pbby!'
+//___________________________________________;
+
+function isToday(date) {
+  let today = new Date();
+
+  let dateStr = (d) => {
+    return d.toString().slice(4, 15);
+  };
+
+  return dateStr(today) === dateStr(date);
+}
+
+var tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+console.log(isToday(tomorrow)); // fasle
+//___________________________________________;
+function isToday2(date) {
+  return new Date().toDateString() === date.toDateString();
+}
+//___________________________________________;
+function animals(heads, legs) {
+  if (heads === 0 && legs === 0) return [0, 0];
+  if (heads <= 0 || legs <= 0 || legs % 2 > 0) return "No solutions";
+
+  let cows = legs / 2 - heads;
+  let chickens = heads - cows;
+
+  if (cows < 0 || chickens < 0) return "No solutions";
+
+  return [chickens, cows];
+}
+
+console.log(animals(72, 200)); // [44, 28]
+//console.log(animals(-72, 200)); // "No solutions"
+//console.log(animals(0, 0)); // [0, 0]
+//___________________________________________;

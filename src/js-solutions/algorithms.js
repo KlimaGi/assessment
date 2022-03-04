@@ -791,3 +791,30 @@ console.log(animals(72, 200)); // [44, 28]
 //console.log(animals(-72, 200)); // "No solutions"
 //console.log(animals(0, 0)); // [0, 0]
 //___________________________________________;
+function getLargerNumbers(a, b) {
+  let a1 = [...a];
+  let b2 = [...b];
+  let result = [];
+
+  for (let i = 0; i <= a1.length - 1; i++) {
+    if (a1[i] > b2[i]) result.push(a1[i]);
+    else result.push(b2[i]);
+  }
+
+  return result;
+}
+
+let arr1 = [13, 64, 15, 17, 88];
+let arr2 = [23, 14, 53, 17, 80];
+
+console.log(getLargerNumbers(arr1, arr2)); // [23, 64, 53, 17, 88]
+//___________________________________________;
+function getLargerNumbers2(a, b) {
+  let a1 = [...a];
+  let result = a1.map((el, i) => Math.max(el, b[i]));
+  return result;
+
+  // a1.forEach((el, i) => {if(el < b[i]) a1[i] = b[i];});
+  // return a1;
+}
+//__________________________________________

@@ -35,16 +35,14 @@ const style = {
 };
 
 function PhoneBookForm({ addEntry }) {
-  let entryState = {
+  const [formEntry, setFormEntry] = useState({
     userFirstname: "Coder",
     userLastname: "Byte",
     userPhone: "8885559999",
-  };
-  const [formEntry, setFormEntry] = useState(entryState);
+  });
 
   const handleChange = (e) => {
-    let updatedForm = { [e.target.name]: e.target.value };
-    setFormEntry((form) => ({ ...form, ...updatedForm }));
+    setFormEntry({ ...formEntry, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {

@@ -50,9 +50,9 @@ const buttonStyle = {
   fontSize: "16px",
 };
 
-const Square = ({ value, onClick }) => {
+const Square = ({ value, handleClick }) => {
   return (
-    <div className="square" onClick={onClick} style={squareStyle}>
+    <div className="square" onClick={handleClick} style={squareStyle}>
       {value}
     </div>
   );
@@ -62,11 +62,19 @@ const Board = () => {
   const [player, setPlayer] = useState(true);
   let playerIs = player ? "X" : "O";
 
-  const [write, setWrite] = useState("");
-
-  const handleClick = () => {
-    setPlayer(!player);
-    if (!write) setWrite(playerIs);
+  const emptyBoard = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ];
+  const [board, setBoard] = useState(emptyBoard);
+  const clickSquare = (row, col) => {
+    if (!board[row][col]) {
+      let newBoard = [...board];
+      newBoard[row][col] = playerIs;
+      setBoard(newBoard);
+      setPlayer(!player);
+    }
   };
 
   return (
@@ -80,19 +88,19 @@ const Board = () => {
       <button style={buttonStyle}>Reset</button>
       <div style={boardStyle}>
         <div className="board-row" style={rowStyle}>
-          <Square onClick={() => handleClick()} value={write} />
-          <Square />
-          <Square />
+          <Square handleClick={() => clickSquare(0, 0)} value={board[0][0]} />
+          <Square handleClick={() => clickSquare(0, 1)} value={board[0][1]} />
+          <Square handleClick={() => clickSquare(0, 2)} value={board[0][2]} />
         </div>
         <div className="board-row" style={rowStyle}>
-          <Square />
-          <Square />
-          <Square />
+          <Square handleClick={() => clickSquare(1, 0)} value={board[1][0]} />
+          <Square handleClick={() => clickSquare(1, 1)} value={board[1][1]} />
+          <Square handleClick={() => clickSquare(1, 2)} value={board[1][2]} />
         </div>
         <div className="board-row" style={rowStyle}>
-          <Square />
-          <Square />
-          <Square />
+          <Square handleClick={() => clickSquare(2, 0)} value={board[2][0]} />
+          <Square handleClick={() => clickSquare(2, 1)} value={board[2][1]} />
+          <Square handleClick={() => clickSquare(2, 2)} value={board[2][2]} />
         </div>
       </div>
     </div>

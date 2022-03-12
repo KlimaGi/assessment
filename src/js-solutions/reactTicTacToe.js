@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 
 const rowStyle = {
   display: "flex",
@@ -58,8 +58,40 @@ const Square = ({ value, handleClick }) => {
   );
 };
 
+const checkWinner = (board) => {
+  for (let i = 0; i <= 2; i++) {
+    if (
+      board[i][0] &&
+      board[i][0] === board[i][1] &&
+      board[i][0] === board[i][2]
+    )
+      return true;
+    if (
+      board[0][i] &&
+      board[0][i] === board[1][i] &&
+      board[1][i] === board[2][i]
+    )
+      return true;
+    if (
+      board[0][0] &&
+      board[0][0] === board[1][1] &&
+      board[0][0] === board[2][2]
+    )
+      return true;
+    if (
+      board[2][0] &&
+      board[2][0] === board[1][1] &&
+      board[1][1] === board[0][2]
+    )
+      return true;
+  }
+  return false;
+};
+
 const Board = () => {
   const [player, setPlayer] = useState(true);
+  const [winner, setWinner] = useState("None");
+
   let playerIs = player ? "X" : "O";
 
   const emptyBoard = [
@@ -68,11 +100,13 @@ const Board = () => {
     ["", "", ""],
   ];
   const [board, setBoard] = useState(emptyBoard);
+
   const clickSquare = (row, col) => {
     if (!board[row][col]) {
       let newBoard = [...board];
       newBoard[row][col] = playerIs;
       setBoard(newBoard);
+      if (checkWinner(board)) setWinner(`Player ${playerIs}`);
       setPlayer(!player);
     }
   };
@@ -83,7 +117,7 @@ const Board = () => {
         Next player: <span>{playerIs}</span>
       </div>
       <div id="winnerArea" className="winner" style={instructionsStyle}>
-        Winner: <span>None</span>
+        Winner: <span>{winner}</span>
       </div>
       <button style={buttonStyle}>Reset</button>
       <div style={boardStyle}>
@@ -107,7 +141,7 @@ const Board = () => {
   );
 };
 
-const Game = () => {
+export const Game = () => {
   return (
     <div className="game">
       <div className="game-board">
@@ -117,4 +151,4 @@ const Game = () => {
   );
 };
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+// ReactDOM.render(<Game />, document.getElementById("root"));

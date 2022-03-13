@@ -45,7 +45,7 @@ const buttonStyle = {
   marginBottom: "16px",
   width: "80px",
   height: "40px",
-  backgroundColor: "#8acaca",
+  backgroundColor: "#92B5D2",
   color: "white",
   fontSize: "16px",
 };
@@ -72,19 +72,11 @@ const checkWinner = (board) => {
       board[1][i] === board[2][i]
     )
       return true;
-    if (
-      board[0][0] &&
-      board[0][0] === board[1][1] &&
-      board[0][0] === board[2][2]
-    )
-      return true;
-    if (
-      board[2][0] &&
-      board[2][0] === board[1][1] &&
-      board[1][1] === board[0][2]
-    )
-      return true;
   }
+  if (board[0][0] && board[0][0] === board[1][1] && board[0][0] === board[2][2])
+    return true;
+  if (board[2][0] && board[2][0] === board[1][1] && board[1][1] === board[0][2])
+    return true;
   return false;
 };
 
